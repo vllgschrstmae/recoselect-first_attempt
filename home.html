@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | RecoSelect</title>
+    <script type="module"></script>
+    <link rel="stylesheet" href="register_design.css" />
+  </head>
+
+  <body>
+    <header>
+        <nav class="navigation">
+            <h2 class="RecoSelect">RecoSelect</h2>
+            <a href="home.html" class="home-link">Home</a>
+            <a href="Reco-Online Shops.html" class="Reco-Online Shops-link">Reco-Online Shops</a>
+            <a href="About.html" class="About-link">About</a>
+    </header>
+
+    <h1>Welcome to RecoSelect Home Page!</h1>
+    <main>
+      <section class="welcome">
+        <h2>Welcome to RecoSelect!</h2>
+        <p>
+          Discover the best online shops and products with personalized
+          recommendations.
+        </p>
+      </section>
+
+      <section class="featured">
+        <h2>Featured Recommendations</h2>
+        <div class="carousel">
+          <!-- Carousel items here -->
+        </div>
+      </section>
+
+      <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <!-- Step-by-step guide here -->
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="reviews">
+          <!-- Testimonials here -->
+        </div>
+      </section>
+
+      <section class="latest-news">
+        <h2>Latest from Our Blog</h2>
+        <div class="articles">
+          <!-- Blog posts here -->
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Join Our Community</h2>
+        <button>Sign Up Now</button>
+      </section>
+    </main>
+
+    <footer>
+      <!-- Footer content here -->
+    </footer>
+
+    <button id="logoutButton">Logout</button>
+
+    <script type="module">
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+      const auth = getAuth(app);
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          // User not logged in, redirect to login page
+          window.location.href = "login.html"; // Ensure this path is correct
+        }
+      });
+
+      document.getElementById("logoutButton").addEventListener("click", () => {
+        signOut(auth)
+          .then(() => {
+            console.log("User signed out.");
+            window.location.href = "login.html"; // Redirect to login on logout
+          })
+          .catch((error) => {
+            console.error("Sign out error:", error);
+          });
+      });
+
+      import { app } from "./firebase-config.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+    </script>
+
+    <script src="reco-select-shop.js" defer></script>
+    <script src="auth-handlers.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA_Compatibble" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="main.js" defer type="module"></script>
+    <link rel="stylesheet" href="register_design.css" />
+
+    <title>Register | RecoSelect</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="form-box register">
+        <h2>Registration</h2>
+        <form id="SecondForm" action="#">
+          <div class="input-box">
+            <input type="text" id="usernameInput" />
+            <label>Username</label>
+          </div>
+          <div class="input-box">
+            <input type="email" id="emailInput" />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <input type="password" id="passwordInput" />
+            <label>Password</label>
+          </div>
+          <button type="submit" class="btn">Register</button>
+          <div class="login-register">
+            <p>
+              Already have an account?
+              <a href="login.html" class="login-link">Login</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAP4_hNOoOUcXHHulbZlFAH41CUjSFNYPA",
+        authDomain: "recoselect.firebaseapp.com",
+        databaseURL:
+          "https://recoselect-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "recoselect",
+        storageBucket: "recoselect.appspot.com",
+        messagingSenderId: "632701275521",
+        appId: "1:632701275521:web:63e3448ded493d614bac80",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+
+      let EmailInput = document.getElementById("emailInput");
+      let PassInput = document.getElementById("passwordInput");
+      let usernameInput = document.getElementById("usernameInput");
+      let MainForm = document.getElementById("MainForm");
+
+      let RegisterUser = (evt) => {
+        evt.preventDefault();
+
+        createUserWithEmailAndPassword(
+          auth,
+          EmailInput.value,
+          PassInput.value,
+          usernameInput.value
+        )
+          .then((credentials) => {
+            console.log(credentials);
+            alert("You have successfully created an account!");
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            alert(error.message);
+            console.log(error.code);
+            console.log(error.message);
+          });
+      };
+
+      SecondForm.addEventListener("submit", RegisterUser);
+    </script>
+  </body>
+</html>

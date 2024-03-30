@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reco-Online Shop | RecoSelect</title>
+</head>
+<body>
+    <header>
+        <h1>Recommended Shops</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="Reco-Online Shops.html" class="active">Reco-Online Shops</a>
+            <a href="About.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="shopSelection">
+            <h2>Select Online Shop:</h2>
+            <select id="shopSelect">
+                <option value="lazada">Lazada</option>
+                <option value="shopee">Shopee</option>
+                <option value="tiktok">TikTok</option>
+                <option value="shein">Shein</option>
+                <option value="amazon">Amazon</option>
+            </select>
+        </section>
+
+        <section id="productType">
+            <h2>Select Product Type:</h2>
+            <select id="productTypeSelect">
+                <option value="fashion">Fashion</option>
+                <option value="school-supplies">School Supplies</option>
+            </select>
+        </section>
+
+        <section id="filters">
+            <h2>Filters:</h2>
+            <div>
+                <label for="priceRange">Price Range:</label>
+                <input type="range" id="priceRange" min="0" max="100" value="50">
+            </div>
+            <div>
+                <label for="ratings">Ratings:</label>
+                <select id="ratings">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+            <div>
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="local">Local</option>
+                    <option value="international">International</option>
+                </select>
+            </div>
+            <button id="searchBtn">Search</button>
+        </section>
+
+        <section id="results">
+            <h2>Results:</h2>
+            <ul id="resultsList">
+                <!-- Results will be inserted here by JavaScript -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; [Year] RecoSelect. All rights reserved.</p>
+    </footer>
+
+    <script src="reco-select-shop.js"></script> <!-- Link to your JS -->
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA_Compatibble" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="main.js" defer type="module"></script>
+    <link rel="stylesheet" href="login_design.css" />
+    <title>Login | RecoSelect</title>
+  </head>
+
+  <body>
+    <form id="MainForm" action="#">
+      <div class="wrapper">
+        <div class="form-box Login">
+          <h2>Login</h2>
+          <div class="input-box">
+            <input type="email" id="emailInput" />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <input type="password" id="passwordInput" />
+            <label>Password</label>
+          </div>
+
+          <button type="submit" class="btn">Log In</button>
+
+          <div class="login-register">
+            <p>
+              Don't have an account?
+              <a href="register.html" class="register-link">Register</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"; // Changed to signInWithEmailAndPassword
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAP4_hNOoOUcXHHulbZlFAH41CUjSFNYPA",
+        authDomain: "recoselect.firebaseapp.com",
+        databaseURL:
+          "https://recoselect-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "recoselect",
+        storageBucket: "recoselect.appspot.com",
+        messagingSenderId: "632701275521",
+        appId: "1:632701275521:web:63e3448ded493d614bac80",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+
+      let emailInput = document.getElementById("emailInput");
+      let passInput = document.getElementById("passwordInput");
+
+      let logInUser = (evt) => {
+        evt.preventDefault();
+
+        signInWithEmailAndPassword(auth, emailInput.value, passInput.value)
+          .then((userCredential) => {
+            console.log(userCredential);
+            alert("Log In Successful!");
+            window.location.href = "home.html"; // Redirect on successful login
+          })
+          .catch((error) => {
+            alert(error.message);
+            console.log(error.code);
+            console.log(error.message);
+            window.location.href = "register.html"; //When faced with an error while logging in
+          });
+      };
+
+      MainForm.addEventListener("submit", logInUser); // Ensure this matches your function name
+    </script>
+  </body>
+</html>
